@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Spotify-Discogs Linker",
+  "version": "1.0",
+  "description": "Adds a link to the Discogs for-sale listing of the currently playing song in the Spotify web player.",
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "https://api.spotify.com/*",
+    "https://api.discogs.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://open.spotify.com/*"],
+      "js": ["scripts/content_script.js"]
+    }
+  ]
+}
