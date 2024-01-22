@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Spotify Discogs Order",
+  "version": "1.0",
+  "description": "Order the currently playing album on Discogs",
+  "permissions": ["activeTab"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "hello_extensions.png",
+      "48": "hello_extensions.png",
+      "128": "hello_extensions.png"
+    }
+  },
+  "host_permissions": [
+    "https://*.spotify.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.spotify.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

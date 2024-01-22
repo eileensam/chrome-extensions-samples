@@ -1,0 +1,16 @@
+body {
+  width: 200px;
+  padding: 10px;
+}
+
+#spotify-info {
+  text-align: center;
+}
+
+#song-name {
+  font-weight: bold;
+}
+
+#artist-name {
+  color: #888;
+}
