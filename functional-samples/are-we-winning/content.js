@@ -1,4 +1,7 @@
-// content.js
+// hello.js
 
-// Example: Send a message to the background script to update the condition
-chrome.runtime.sendMessage({ updateCondition: false });
+// Retrieve the value from chrome.storage.local
+chrome.storage.local.get('valueFromBackground', ({ valueFromBackground }) => {
+  // Update the HTML with the retrieved value
+  document.getElementById('messageFromBackground').innerText = valueFromBackground;
+});

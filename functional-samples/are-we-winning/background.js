@@ -34,6 +34,10 @@ async function updateConditionBasedOnAPI() {
     console.log(team_one_name + " score: " + team_one_score)
     console.log(team_two_name + " score: " + team_two_score)
 
+
+    const message = `${team_one_name} ${team_one_score} - ${team_two_name} ${team_two_score}`;
+    chrome.storage.local.set({ valueFromBackground: message });
+
     // Update the condition state in chrome.storage.local
     chrome.storage.local.set({ condition: isTeamWinning });
   } catch (error) {
@@ -65,3 +69,4 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     chrome.action.setIcon({ path: { 16: iconPath } });
   }
 });
+
