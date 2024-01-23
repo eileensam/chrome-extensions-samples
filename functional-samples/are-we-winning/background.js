@@ -14,17 +14,32 @@ chrome.storage.local.set({ condition: true });
 // Function to perform the API call and update the condition state
 async function updateConditionBasedOnAPI() {
   try {
-    const response = await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard');
+    const api = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard'
+    const response = await fetch(api);
     const data = await response.json();
 
     // Extract relevant information from the API response
-    team_one = data.events[0].competitions[0].competitors[0].score
-    team_two = data.events[0].competitions[0].competitors[1].score
-    const isTeamWinning = Number(team_one) > Number(team_two)
-;
+    team_one = data.events[0].competitions[0].competitors[0];
+    team_one_score = team_one.score
+    team_one_name = team_one.team.abbreviation;
+    team_two = data.events[0].competitions[0].competitors[1];
+    team_two_score = team_two.score;
+    team_two_name = team_two.team.abbreviation;
 
-    console.log("Bills score: " + team_one)
-    console.log("Chiefs score: " + team_two)
+    unc = null
+    other = null
+    if (team_one_name == "UNC") {
+        unc = team_one
+        other = team_two
+    } else {
+        unc = team_two
+        other = team_one
+    }
+
+    const isTeamWinning = Number(unc) > Number(other);
+
+    console.log(team_one_name + " score: " + team_one_score)
+    console.log(team_two_name + " score: " + team_two_score)
 
     // Update the condition state in chrome.storage.local
     chrome.storage.local.set({ condition: isTeamWinning });
@@ -34,9 +49,9 @@ async function updateConditionBasedOnAPI() {
 }
 
 // Perform the API update every 5 ms (adjust the interval as needed)
-game_still_active = false;
+game_still_active = true;
 if (game_still_active) {
-    setInterval(updateConditionBasedOnAPI, 5);
+    setInterval(updateConditionBasedOnAPI, 1000);
 }
 
 // Listen for messages from content scripts

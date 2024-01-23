@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="tutorials">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/_archive/mv2/tutorials/get_started_complete.zip!/" />
+      <root url="jar://$PROJECT_DIR$/_archive/mv2/tutorials/oauth_tutorial_complete.zip!/" />
+      <root url="jar://$PROJECT_DIR$/_archive/mv2/tutorials/broken_background_color.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
