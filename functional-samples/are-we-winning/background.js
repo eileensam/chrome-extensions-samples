@@ -3,14 +3,6 @@
 // Set the initial condition state
 chrome.storage.local.set({ condition: true });
 
-// Function to toggle the condition state every 5 seconds
-//setInterval(() => {
-//  chrome.storage.local.get('condition', ({ condition }) => {
-//    const newCondition = !condition;
-//    chrome.storage.local.set({ condition: newCondition });
-//  });
-//}, 5000);
-
 // Function to perform the API call and update the condition state
 async function updateConditionBasedOnAPI() {
   try {
@@ -36,7 +28,8 @@ async function updateConditionBasedOnAPI() {
         other = team_one
     }
 
-    const isTeamWinning = Number(unc) > Number(other);
+    const isTeamWinning = Number(unc.score) > Number(other.score);
+    console.log("isTeamWinning: " + isTeamWinning)
 
     console.log(team_one_name + " score: " + team_one_score)
     console.log(team_two_name + " score: " + team_two_score)
@@ -51,7 +44,7 @@ async function updateConditionBasedOnAPI() {
 // Perform the API update every 5 ms (adjust the interval as needed)
 game_still_active = true;
 if (game_still_active) {
-    setInterval(updateConditionBasedOnAPI, 1000);
+    setInterval(updateConditionBasedOnAPI, 5);
 }
 
 // Listen for messages from content scripts
